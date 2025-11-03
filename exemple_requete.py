@@ -20,3 +20,10 @@ FROM
 WHERE
  gender = 'M'
 ORDER BY count DESC LIMIT 5
+
+#######
+console
+########
+
+bq query "select string_field_10 as request, count(*) as requestcount from logdata.accesslog group by request order by requestcount desc"
+
