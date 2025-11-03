@@ -21,9 +21,26 @@ WHERE
  gender = 'M'
 ORDER BY count DESC LIMIT 5
 
+
 #######
 console
 ########
 
 bq query "select string_field_10 as request, count(*) as requestcount from logdata.accesslog group by request order by requestcount desc"
 
+
+######
+use case: taxi NY
+#######
+
+#standardSQL
+SELECT
+  TIMESTAMP_TRUNC(pickup_datetime,
+    MONTH) month,
+  COUNT(*) trips
+FROM
+  `bigquery-public-data.new_york.tlc_yellow_trips_2015`
+GROUP BY
+  1
+ORDER BY
+  1
